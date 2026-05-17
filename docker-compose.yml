@@ -5,6 +5,8 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=root
+    ports:
+      - 5432:5432
     volumes:
       - ./postgres-data:/var/lib/postgresql
     networks:
@@ -25,7 +27,7 @@ services:
       postgres:
         condition: service_started
     environment:
-      - DB_HOST=postgres
+      - DB_HOST=localhost
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=root
@@ -33,7 +35,7 @@ services:
     networks:
       - app-network
     restart: on-failure
-
+    
 networks:
   app-network:
     driver: bridge
